@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>College Admission Form</title>
+
+<style>
+
+/* =========================
+   BASIC RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    color:#202124;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    background:linear-gradient(135deg,#123c69,#2874a6);
+    color:white;
+    padding:25px 20px;
+}
+
+.header-content{
+    max-width:1000px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.college-logo{
+    width:65px;
+    height:65px;
+    background:white;
+    color:#123c69;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.header h1{
+    font-size:27px;
+    margin-bottom:5px;
+}
+
+.header p{
+    font-size:14px;
+    opacity:.9;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+    width:94%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card{
+    background:white;
+    border-radius:10px;
+    box-shadow:0 5px 25px rgba(0,0,0,.10);
+    overflow:hidden;
+}
+
+
+/* =========================
+   FORM SECTION
+========================= */
+
+.section{
+    padding:25px 30px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+    color:#123c69;
+}
+
+.section-number{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#123c69;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+.section-title h2{
+    font-size:19px;
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.full{
+    grid-column:1 / -1;
+}
+
+label{
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#374151;
+}
+
+.required{
+    color:#e53935;
+}
+
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px 13px;
+    border:1px solid #d1d5db;
+    border-radius:5px;
+    outline:none;
+    background:white;
+    font-size:14px;
+    transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#2874a6;
+    box-shadow:0 0 0 3px rgba(40,116,166,.10);
+}
+
+textarea{
+    resize:vertical;
+    min-height:90px;
+}
+
+
+/* =========================
+   RADIO / CHECKBOX
+========================= */
+
+.radio-group,
+.checkbox-group{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:5px;
+}
+
+.radio-option,
+.check-option{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:14px;
+    font-weight:normal;
+}
+
+.radio-option input,
+.check-option input{
+    width:auto;
+}
+
+
+/* =========================
+   FILE INPUT
+========================= */
+
+input[type="file"]{
+    padding:9px;
+}
+
+
+/* =========================
+   HELP TEXT
+========================= */
+
+.help{
+    font-size:11px;
+    color:#777;
+    margin-top:5px;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error{
+    color:#d32f2f;
+    font-size:11px;
+    margin-top:5px;
+    display:none;
+}
+
+
+/* =========================
+   DECLARATION
+========================= */
+
+.declaration{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    padding:15px;
+    border-radius:6px;
+    font-size:13px;
+    line-height:1.6;
+}
+
+
+/* =========================
+   BUTTON AREA
+========================= */
+
+.buttons{
+    padding:25px 30px;
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+}
+
+button{
+    border:0;
+    border-radius:5px;
+    padding:12px 25px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.reset-btn{
+    background:#e5e7eb;
+    color:#333;
+}
+
+.submit-btn{
+    background:#123c69;
+    color:white;
+}
+
+.submit-btn:hover{
+    background:#0c2d50;
+}
+
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+
+.success{
+    display:none;
+    background:#e8f5e9;
+    color:#1b5e20;
+    border:1px solid #a5d6a7;
+    padding:20px;
+    margin:20px 30px;
+    border-radius:7px;
+    text-align:center;
+}
+
+.success h2{
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+    font-size:13px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+    .header-content{
+        align-items:flex-start;
+    }
+
+    .college-logo{
+        width:50px;
+        height:50px;
+        font-size:22px;
+    }
+
+    .header h1{
+        font-size:20px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .section{
+        padding:20px;
+    }
+
+    .buttons{
+        padding:20px;
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+<div class="header-content">
+
+<div class="college-logo">
+    🎓
+</div>
+
+<div>
+
+<h1>
+College Admission Form
+</h1>
+
+<p>
+Student Registration & Admission Portal
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+<form
+id="admissionForm"
+class="form-card"
+novalidate>
+
+
+<!-- =========================
+     PERSONAL DETAILS
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-number">
+1
+</div>
+
+<h2>
+Personal Information
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Full Name <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="fullName"
+placeholder="Enter your full name">
+
+<div
+class="error"
+id="nameError">
+Please enter your full name.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Date of Birth <span class="required">*</span>
+</label>
+
+<input
+type="date"
+id="dob">
+
+<div
+class="error"
+id="dobError">
+Please select your date of birth.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Gender <span class="required">*</span>
+</label>
+
+<div class="radio-group">
+
+<label class="radio-option">
+<input type="radio" name="gender" value="Male">
+Male
+</label>
+
+<label class="radio-option">
+<input type="radio" name="gender" value="Female">
+Female
+</label>
+
+<label class="radio-option">
+<input type="radio" name="gender" value="Other">
+Other
+</label>
+
+</div>
+
+<div
+class="error"
+id="genderError">
+Please select your gender.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Blood Group
+</label>
+
+<select id="bloodGroup">
+
+<option value="">
+Select Blood Group
+</option>
+
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+<option>O+</option>
+<option>O-</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     COURSE DETAILS
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-number">
+2
+</div>
+
+<h2>
+Course & Academic Information
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Course <span class="required">*</span>
+</label>
+
+<select id="course">
+
+<option value="">
+Select Course
+</option>
+
+<option>
+BCA - Bachelor of Computer Applications
+</option>
+
+<option>
+BBA - Bachelor of Business Administration
+</option>
+
+<option>
+B.Tech - Bachelor of Technology
+</option>
+
+<option>
+B.Sc - Bachelor of Science
+</option>
+
+<option>
+B.Com - Bachelor of Commerce
+</option>
+
+<option>
+BA - Bachelor of Arts
+</option>
+
+</select>
+
+<div
+class="error"
+id="courseError">
+Please select a course.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Preferred Semester <span class="required">*</span>
+</label>
+
+<select id="semester">
+
+<option value="">
+Select Semester
+</option>
+
+<option>1st Semester</option>
+<option>2nd Semester</option>
+<option>3rd Semester</option>
+<option>4th Semester</option>
+<option>5th Semester</option>
+<option>6th Semester</option>
+
+</select>
+
+<div
+class="error"
+id="semesterError">
+Please select a semester.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Previous Qualification
+</label>
+
+<select id="qualification">
+
+<option value="">
+Select Qualification
+</option>
+
+<option>10th</option>
+<option>12th</option>
+<option>Diploma</option>
+<option>Graduation</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Previous School / College
+</label>
+
+<input
+type="text"
+id="previousCollege"
+placeholder="Enter institution name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Percentage / CGPA
+</label>
+
+<input
+type="number"
+id="percentage"
+min="0"
+max="100"
+step="0.01"
+placeholder="Example: 78.50">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Passing Year
+</label>
+
+<select id="passingYear">
+
+<option value="">
+Select Year
+</option>
+
+<option>2026</option>
+<option>2025</option>
+<option>2024</option>
+<option>2023</option>
+<option>2022</option>
+<option>2021</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-number">
+3
+</div>
+
+<h2>
+Contact Information
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Email Address <span class="required">*</span>
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="example@gmail.com">
+
+<div
+class="error"
+id="emailError">
+Enter a valid email address.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Mobile Number <span class="required">*</span>
+</label>
+
+<input
+type="tel"
+id="phone"
+maxlength="10"
+placeholder="10-digit mobile number">
+
+<div
+class="error"
+id="phoneError">
+Enter a valid 10-digit mobile number.
+</div>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+Address <span class="required">*</span>
+</label>
+
+<textarea
+id="address"
+placeholder="Enter your complete address">
+</textarea>
+
+<div
+class="error"
+id="addressError">
+Please enter your address.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+City
+</label>
+
+<input
+type="text"
+id="city"
+placeholder="Enter city">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+State
+</label>
+
+<select id="state">
+
+<option value="">
+Select State
+</option>
+
+<option>Uttar Pradesh</option>
+<option>Delhi</option>
+<option>Haryana</option>
+<option>Rajasthan</option>
+<option>Maharashtra</option>
+<option>Madhya Pradesh</option>
+<option>Bihar</option>
+<option>Punjab</option>
+<option>Uttarakhand</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+PIN Code
+</label>
+
+<input
+type="text"
+id="pincode"
+maxlength="6"
+placeholder="6-digit PIN code">
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PARENT DETAILS
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-number">
+4
+</div>
+
+<h2>
+Parent / Guardian Information
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Father / Guardian Name <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="guardianName"
+placeholder="Enter name">
+
+<div
+class="error"
+id="guardianError">
+Please enter guardian name.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Relationship
+</label>
+
+<select id="relationship">
+
+<option>Father</option>
+<option>Mother</option>
+<option>Guardian</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Guardian Mobile Number
+</label>
+
+<input
+type="tel"
+id="guardianPhone"
+maxlength="10"
+placeholder="10-digit mobile">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Occupation
+</label>
+
+<input
+type="text"
+id="occupation"
+placeholder="Guardian occupation">
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     INTERESTS
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-number">
+5
+</div>
+
+<h2>
+Interests & Activities
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group full">
+
+<label>
+Hobbies
+</label>
+
+<div class="checkbox-group">
+
+<label class="check-option">
+<input type="checkbox" value="Coding">
+Coding
+</label>
+
+<label class="check-option">
+<input type="checkbox" value="Sports">
+Sports
+</label>
+
+<label class="check-option">
+<input type="checkbox" value="Music">
+Music
+</label>
+
+<label class="check-option">
+<input type="checkbox" value="Reading">
+Reading
+</label>
+
+<label class="check-option">
+<input type="checkbox" value="Photography">
+Photography
+</label>
+
+</div>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+Why do you want to join this course?
+</label>
+
+<textarea
+id="reason"
+placeholder="Tell us briefly about your interest in this course...">
+</textarea>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DOCUMENTS
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-number">
+6
+</div>
+
+<h2>
+Documents
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Student Photo
+</label>
+
+<input
+type="file"
+id="photo"
+accept="image/*">
+
+<div class="help">
+JPG / PNG recommended.
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Marksheet
+</label>
+
+<input
+type="file"
+id="marksheet"
+accept=".pdf,.jpg,.jpeg,.png">
+
+<div class="help">
+PDF / JPG / PNG allowed.
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DECLARATION
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<div class="section-number">
+7
+</div>
+
+<h2>
+Declaration
+</h2>
+
+</div>
+
+
+<div class="declaration">
+
+<label class="check-option">
+
+<input
+type="checkbox"
+id="declaration">
+
+I hereby declare that all the information
+provided by me in this admission form is
+true and correct to the best of my knowledge.
+I understand that providing incorrect
+information may result in cancellation of
+my admission.
+
+</label>
+
+<div
+class="error"
+id="declarationError">
+Please accept the declaration.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     SUCCESS
+========================= -->
+
+<div
+class="success"
+id="successMessage">
+
+<h2>
+✓ Application Submitted Successfully
+</h2>
+
+<p>
+Your college admission form has been
+submitted successfully.
+</p>
+
+<p id="applicationId"></p>
+
+</div>
+
+
+<!-- =========================
+     BUTTONS
+========================= -->
+
+<div class="buttons">
+
+<button
+type="reset"
+class="reset-btn">
+
+Reset Form
+
+</button>
+
+
+<button
+type="submit"
+class="submit-btn">
+
+Submit Application
+
+</button>
+
+</div>
+
+
+</form>
+
+</main>
+
+
+<footer class="footer">
+
+© 2026 College Admission Portal |
+Student Registration System
+
+</footer>
+
+
+<script>
+
+/* =========================
+   FORM ELEMENT
+========================= */
+
+const form =
+document.getElementById("admissionForm");
+
+
+/* =========================
+   ERROR HELPER
+========================= */
+
+function showError(id){
+
+document.getElementById(id)
+.style.display = "block";
+
+}
+
+
+function hideError(id){
+
+document.getElementById(id)
+.style.display = "none";
+
+}
+
+
+/* =========================
+   FORM SUBMIT
+========================= */
+
+form.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+let valid = true;
+
+
+/* FULL NAME */
+
+const name =
+document.getElementById("fullName").value.trim();
+
+if(name === ""){
+
+showError("nameError");
+valid = false;
+
+}else{
+
+hideError("nameError");
+
+}
+
+
+/* DOB */
+
+const dob =
+document.getElementById("dob").value;
+
+if(dob === ""){
+
+showError("dobError");
+valid = false;
+
+}else{
+
+hideError("dobError");
+
+}
+
+
+/* GENDER */
+
+const gender =
+document.querySelector(
+'input[name="gender"]:checked'
+);
+
+if(!gender){
+
+showError("genderError");
+valid = false;
+
+}else{
+
+hideError("genderError");
+
+}
+
+
+/* COURSE */
+
+const course =
+document.getElementById("course").value;
+
+if(course === ""){
+
+showError("courseError");
+valid = false;
+
+}else{
+
+hideError("courseError");
+
+}
+
+
+/* SEMESTER */
+
+const semester =
+document.getElementById("semester").value;
+
+if(semester === ""){
+
+showError("semesterError");
+valid = false;
+
+}else{
+
+hideError("semesterError");
+
+}
+
+
+/* EMAIL */
+
+const email =
+document.getElementById("email").value.trim();
+
+const emailPattern =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(!emailPattern.test(email)){
+
+showError("emailError");
+valid = false;
+
+}else{
+
+hideError("emailError");
+
+}
+
+
+/* PHONE */
+
+const phone =
+document.getElementById("phone").value.trim();
+
+if(!/^[0-9]{10}$/.test(phone)){
+
+showError("phoneError");
+valid = false;
+
+}else{
+
+hideError("phoneError");
+
+}
+
+
+/* ADDRESS */
+
+const address =
+document.getElementById("address").value.trim();
+
+if(address === ""){
+
+showError("addressError");
+valid = false;
+
+}else{
+
+hideError("addressError");
+
+}
+
+
+/* GUARDIAN */
+
+const guardian =
+document.getElementById("guardianName")
+.value.trim();
+
+if(guardian === ""){
+
+showError("guardianError");
+valid = false;
+
+}else{
+
+hideError("guardianError");
+
+}
+
+
+/* DECLARATION */
+
+const declaration =
+document.getElementById("declaration")
+.checked;
+
+if(!declaration){
+
+showError("declarationError");
+valid = false;
+
+}else{
+
+hideError("declarationError");
+
+}
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+if(valid){
+
+const applicationNumber =
+"ADM" +
+Date.now().toString().slice(-6);
+
+
+document.getElementById(
+"applicationId"
+).textContent =
+"Application ID: " +
+applicationNumber;
+
+
+document.getElementById(
+"successMessage"
+).style.display =
+"block";
+
+
+/*
+   Save basic application data
+   in browser LocalStorage
+*/
+
+const application = {
+
+applicationId:
+applicationNumber,
+
+name:name,
+
+dob:dob,
+
+gender:
+gender.value,
+
+course:course,
+
+semester:semester,
+
+email:email,
+
+phone:phone,
+
+address:address,
+
+guardian:guardian,
+
+submittedAt:
+new Date().toLocaleString()
+
+};
+
+
+localStorage.setItem(
+"collegeApplication",
+JSON.stringify(application)
+);
+
+
+/*
+   Scroll to success message
+*/
+
+document.getElementById(
+"successMessage"
+).scrollIntoView({
+behavior:"smooth"
+});
+
+
+}
+
+});
+
+
+/* =========================
+   RESET
+========================= */
+
+form.addEventListener(
+"reset",
+function(){
+
+setTimeout(()=>{
+
+document.getElementById(
+"successMessage"
+).style.display="none";
+
+
+document.querySelectorAll(
+".error"
+).forEach(error=>{
+
+error.style.display="none";
+
+});
+
+},50);
+
+});
+
+
+/* =========================
+   PHONE INPUT
+========================= */
+
+document.getElementById(
+"phone"
+).addEventListener(
+"input",
+function(){
+
+this.value =
+this.value.replace(
+/[^0-9]/g,
+""
+);
+
+});
+
+
+document.getElementById(
+"guardianPhone"
+).addEventListener(
+"input",
+function(){
+
+this.value =
+this.value.replace(
+/[^0-9]/g,
+""
+);
+
+});
+
+
+document.getElementById(
+"pincode"
+).addEventListener(
+"input",
+function(){
+
+this.value =
+this.value.replace(
+/[^0-9]/g,
+""
+);
+
+});
+
+
+</script>
+
+</body>
+</html>
